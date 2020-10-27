@@ -9,7 +9,7 @@ pipeline {
 	 parameters {
 	    string(name: 'DOCKER_IMAGE', defaultValue: 'library/datareportzuulserver', description: 'docker镜像名')
         string(name: 'APP_NAME', defaultValue: 'datareportzuulserver', description: 'k8s中标签名')
-        string(name: 'HARBOR_HOST', defaultValue: '192.168.5.54:11016', description: 'harbor仓库地址')
+        string(name: 'HARBOR_HOST', defaultValue: '47.106.224.69', description: 'harbor仓库地址')
         string(name: 'K8S_NAMESPACE', defaultValue: 'mmcflying', description: 'k8s的namespace名称')
     }
 	stages{
