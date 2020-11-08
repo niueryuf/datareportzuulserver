@@ -51,12 +51,10 @@ public class PreZuulFilter extends ZuulFilter {
 
 
     public boolean checkToken(HttpServletRequest request) {
-        String tokenType =  request.getHeader("FLYINGSESSIONID");
-        String token = request.getHeader("mmc-identity");
-        if (!StringUtils.isEmpty(tokenType) && !StringUtils.isEmpty(token)) {
-            String key = token + tokenType;
-            String flyingsessionid = (String)stringRedisTemplate.opsForHash().get(key, "FLYINGSESSIONID");
-            System.out.println(tokenType + ":" + flyingsessionid);
+        String token = request.getHeader("token");
+        if (!StringUtils.isEmpty(token)) {
+            String key = token ;
+            String flyingsessionid = (String)stringRedisTemplate.opsForValue().get(key);
             if (flyingsessionid != null) {
                 stringRedisTemplate.expire(key, expireTime, TimeUnit.SECONDS);
                 return true;
